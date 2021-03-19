@@ -1,5 +1,6 @@
 package com.buba.Controller;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +24,62 @@ public class Test1Controller {
 //        test2();
 //        List<Object> objects = test3();
 //        System.out.println(objects.get(0)+""+objects.get(1));
-        test4();
+//        test4();
+//        test5();
+//        test6();
+//        test7();
+//        test8();
+        test9();
         logger.debug("结束================");
+    }
+
+    private static void test9() {
+        if(!StringUtils.equalsIgnoreCase("false","true")){
+            System.out.println("123");
+        }
+    }
+
+    private static void test8() {
+        Integer s = 3;
+        Integer ss = 3;
+        if(s>=ss){
+            System.out.println("s大或一样大");
+        }else{
+            System.out.println("ss大");
+        }
+    }
+
+    private static void test7() {
+        BigDecimal s = BigDecimal.TEN;
+        BigDecimal s1 = BigDecimal.TEN;
+        BigDecimal s2 = BigDecimal.TEN;
+        BigDecimal bigDecimal = s.add(s1).multiply(s2).setScale(2);
+        System.out.println(bigDecimal);
+    }
+
+    private static void test6() {
+        String s = "123";
+        String ss = "456";
+        String s1 = "123";
+        String s2 = "456";
+        if(s.equals(s1)){
+            System.out.println("123");
+        }else if(ss.equals(s2)){
+            System.out.println("456");
+        }else{
+            System.out.println("789");
+        }
+    }
+
+    private static void test5() {
+        int s1 = 1;
+        int s2 = 2;
+        if(s1 != 1 || s2 != 2){
+            System.out.println("123");
+        }else{
+            System.out.println("456");
+        }
+
     }
 
     private static void test4() {
