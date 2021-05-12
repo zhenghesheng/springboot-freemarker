@@ -1,6 +1,7 @@
 package com.buba.Controller;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -12,13 +13,14 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Test1Controller {
     static Logger logger = LoggerFactory.getLogger("LOGGER");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         logger.debug("开始================");
 //        test1();
 //        test2();
@@ -29,8 +31,36 @@ public class Test1Controller {
 //        test6();
 //        test7();
 //        test8();
-        test9();
+//        test9();
+//        test10();
+        test11();
         logger.debug("结束================");
+    }
+
+    private static void test11() throws ParseException {
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        String batchDate = "2022-01-16";
+        String overdueDate = "2021-12-23";
+        long batchDateTime=sdf.parse(batchDate).getTime();
+        long overdueDateTime=sdf.parse(overdueDate).getTime();
+        long betweenDaysTime=(batchDateTime-overdueDateTime)/(1000*3600*24);
+        int betweenDays = Integer.parseInt(String.valueOf(betweenDaysTime))+1;
+        System.out.println(betweenDays);
+    }
+
+    private static void test10() throws ParseException {
+        Date date=new Date(); //取时间
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        calendar.add(calendar.DATE,1); //把日期往后增加一天,整数  往后推,负数往前移动
+        Date date1 = calendar.getTime(); //这个时间就是日期往后推一天的结果
+        Date date2 = DateUtils.addDays(date, +1);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date3 = sdf.format(date);
+        Date date5 = sdf.parse(date3);
+        if(date5.before(date)){
+            System.out.println("失效");
+        }
     }
 
     private static void test9() {
